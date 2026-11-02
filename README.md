@@ -38,7 +38,7 @@ GitHub Actions 的 `.github/workflows/check-live.yml` 設有 `*/5 * * * *` 排�
 
 共享 Worker 的程式也存放於 YouTube repo 的 `scheduler/`；部署任一份都會更新同名 Worker，應保留兩個觸發目標。
 
-Workflow 使用 Python 3.12，安裝 `requirements.txt` 及 `streamget install-node` 後執行監控；工作上限為 4 分鐘，同一 concurrency group 不取消正在執行的工作。
+Workflow 使用 Python 3.12 與 `actions/setup-node@v7` 提供的 Node.js 22。Node.js 優先取用 runner tool cache（`check-latest: false`），不再每輪執行 `streamget install-node` 下載；快取沒有相符版本時才由官方 action 取得。Python 套件安裝限時 2 分鐘，pip 設定 5 次連線重試及 20 秒 timeout；安裝後驗證 `streamget` 能找到 Node.js，並透過 Python 執行 JavaScript。工作上限為 4 分鐘，同一 concurrency group 不取消正在執行的工作。
 
 ## 必要 Secrets
 
