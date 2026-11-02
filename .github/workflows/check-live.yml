@@ -90,23 +90,17 @@ jobs:
           echo "::error::Could not save live state after 3 attempts."
           exit 1
 
-      - name: Notify private channel when the monitor fails
-        if: ${{ failure() }}
+      - name: Notify Discord when the monitor fails
+        if: ${{ failure() && env.DISCORD_WEBHOOK_URL != '' }}
         env:
-          DISCORD_ERROR_WEBHOOK_URL: ${{ secrets.DISCORD_ERROR_WEBHOOK_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          REPOSITORY: ${{ github.repository }}
         run: |
-          if [ -z "$DISCORD_ERROR_WEBHOOK_URL" ]; then
-            echo "::warning::DISCORD_ERROR_WEBHOOK_URL is not configured; no channel notification was sent."
-            exit 0
-          fi
           payload=$(jq -n \
-            --arg content "⚠️ ${REPOSITORY} 監控執行失敗：${RUN_URL}" \
-            '{content: $content, allowed_mentions: {parse: []}}')
+            --arg content "⚠️ VV 直播監控執行失敗：${RUN_URL}" \
+            '{content: $content}')
           curl --fail-with-body \
             --retry 2 \
             --retry-all-errors \
             --header "Content-Type: application/json" \
             --data "$payload" \
-            "$DISCORD_ERROR_WEBHOOK_URL"
+            "$DISCORD_WEBHOOK_URL"
