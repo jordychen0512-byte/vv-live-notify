@@ -10,7 +10,7 @@
 | 盾反威威｜陶帅帅 | https://live.douyin.com/967062364422 |
 | 老牌威威｜齐天 | https://live.douyin.com/827018709286 |
 | 當代選手｜争锋瑾 | https://live.douyin.com/23531668627 |
-| 爭鋒陆判 | https://live.douyin.com/40882963963 |
+| 陌刀威威｜爭鋒陆判 | https://live.douyin.com/40882963963 |
 | 小璇天下第一好 | https://live.bilibili.com/12859122 |
 
 Bilibili 使用公開直播間 API `room/v1/Room/get_info`，並核對主播 UID `345786891`。`live_status == 1` 為直播中，`0`（未開播）與 `2`（輪播）不通知；API 錯誤、UID 不符、未知狀態均保留上次狀態。通知沿用既有 Webhook、排程和去重流程，無須新增 Secret。Bilibili 狀態 key 使用 `bilibili:12859122`，避免與其他平台撞號。
