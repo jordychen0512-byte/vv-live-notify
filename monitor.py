@@ -27,6 +27,10 @@ STREAMERS = {
         "name": "當代選手｜争锋瑾",
         "url": "https://live.douyin.com/23531668627",
     },
+    "40882963963": {
+        "name": "爭鋒陆判",
+        "url": "https://live.douyin.com/40882963963",
+    },
 }
 
 STREAMERS["bilibili:12859122"] = {
