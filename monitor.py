@@ -28,7 +28,7 @@ STREAMERS = {
         "url": "https://live.douyin.com/23531668627",
     },
     "40882963963": {
-        "name": "爭鋒陆判",
+        "name": "陌刀威威｜爭鋒陆判",
         "url": "https://live.douyin.com/40882963963",
     },
 }
